@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGNUP | NITW</title>
+  <link rel="stylesheet" href="output.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script> 
+    $(function(){
+      $("#header").load("header.html"); 
+      $("#footer").load("footer.html"); 
+    });
+  </script>
+</head>
+<body>
+  <div id="header"></div>
+  <div class="min-h-screen mt-12 bg-gray-100 p-0 sm:p-12">
+    <div class="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl ">
+      <div class="inline-block w-full "><h1 class="font-sans text-3xl text-center font-bold hover:font-serif ">LOGIN</h1></div>
+      <form action="" class="mt-3 p-3">
+          <div class="inline-block w-full"><label for="username_field" class="text-x text-start">Username</label></div>
+          <input type="text" maxlength="30" name="" id="" class="mt-2 bg-gray-200 w-full h-12 rounded px-4 focus:outline-teal-300">
+          <div class="inline-block w-full mt-2"><label for="password_field" class="text-x text-start">Password</label></div>
+          <input type="password" maxlength="15" name="" id="" class="mt-2 bg-gray-200 w-full h-12 rounded focus:outline-teal-300 items-center px-4" >
+          <div class="inline-block w-full mt-9"><button class="text-semi h-12 w-full bg-teal-400 rounded hover:bg-teal-500 text-white shadow-sm hover:font-mono ">Login</button></div>
+          <div class=" inline-block w-full mt-8 text-center  ">
+              <a href="" class=" text-teal-400   hover:text-teal-500" >Forgot Password</a>
+              <label for="seperator" class="pl-3 pr-3 text-blue-400">|</label>
+              <a href="./SignUp.html" class="text-teal-400 hover:text-teal-500">SignUp</a>
+          </div>
+      </form>
+    </div>
+  </div>
+  <div id="footer"></div>
+</body>
+</html>
