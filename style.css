@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footer-box {
+ border: 1px solid #000;
+}
+
+.filter-box {
+    height: 70vh;
+}
+
+.item-list {
+    width: 70vw;
+    height: 62.3vh;
+}
+
+td {
+    @apply py-5
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f0f0f0f4; /* Adjust the color as needed */
+}

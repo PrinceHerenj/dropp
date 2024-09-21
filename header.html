@@ -1,0 +1,37 @@
+<header class="bg-white shadow-sm fixed top-0 w-full z-10 navbar">
+    <nav class="container mx-auto px-4 py-2 flex justify-between items-center h-full">
+        <!-- Logo on the left -->
+        <a href="#" class="text-2xl font-bold secondary flex items-center">
+            <img src="./Assets/logo.png" alt="Logo" class="h-8 mr-2"> <!-- Replace with your logo image -->
+            Dropp
+        </a>
+        <!-- Navigation links and buttons on the right -->
+        <div class="hidden md:flex items-center space-x-6 ml-auto">
+            <a href="#" class="text-gray-600 hover:text-primary hover:underline">Home</a>
+            <a href="#" class="text-gray-600 hover:text-primary hover:underline">About</a>
+            <a href="#" class="text-gray-600 hover:text-primary hover:underline">Contact</a>
+            <a href="#" class="bg-teal-500 text-white px-6 py-2 rounded-lg shadow transition duration-300 ease-in-out transform hover:bg-teal-700 hover:scale-105">Login</a>
+            <a href="#" class="bg-gray-200 px-6 py-2 rounded-lg shadow transition duration-300 ease-in-out transform hover:bg-gray-300">Register</a>
+        </div>
+        <div class="md:hidden">
+            <button id="menu-toggle" class="focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden">
+        <div class="flex flex-col space-y-2 p-4 bg-white shadow">
+            <a href="#" class="text-gray-600 underline hover:text-primary hover:underline">Home</a>
+            <a href="#" class="text-gray-600 underline hover:text-primary hover:underline">About</a>
+            <a href="#" class="text-gray-600 underline hover:text-primary hover:underline">Contact</a>
+            <div class="flex flex-col space-y-2 mt-4">
+                <a href="#" class="primary-bg text-white px-6 py-2 rounded-lg shadow transition duration-300 ease-in-out transform hover:bg-[#134B70]">Login</a>
+                <a href="#" class="bg-gray-200 secondary px-6 py-2 rounded-lg shadow transition duration-300 ease-in-out transform hover:bg-gray-300">Register</a>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropp</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Add header to top of html using script -->
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+    </script>
+    <!-- Add footer to bottom of html -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+    <!-- Body -->
+    <div class="h-fit border rounded-xl mx-10 mt-20 shadow">
+        <div class="flex filter-box border-slate-400 m-5">
+            <!-- Filter Area -->
+            <div class="w-80 filter-box shadow border border-slate-400 rounded-xl p-5">
+                <h2 class="text-xl font-bold mb-4">Filter Items</h2>
+                <div class="mb-4">
+                    <label for="filter-name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="filter-name" class="mt-1 block w-full border border-slate-400 rounded-xl shadow px-4 py-2" placeholder="Enter item name">
+                </div>
+                <div class="mb-4">
+                    <label for="filter-status" class="block text-sm font-medium text-gray-700">Status</label>
+                    <select id="filter-status" class="mt-1 block w-full border border-slate-400 rounded-xl shadow px-4 py-2">
+                        <option value="">Select status</option>
+                        <option value="available">Available</option>
+                        <option value="unavailable">Unavailable</option>
+                    </select>
+                </div>
+                <button class="bg-teal-500 hover:bg-teal-700 shadow-2xl text-white font-bold py-2 px-4 rounded-xl">Apply Filter</button>
+            </div>
+            <div class="flex-col w-fit">
+                <div class="flex">
+                    <!-- Search -->
+                    <div class=" h-10 mx-5">
+                        <input type="text" class="w-96 h-10 border border-slate-400 rounded-xl shadow px-4" placeholder="Search">
+                    </div>
+                    <!-- TODO: Create Button for item adding -->
+                    <div>
+                        <button class="bg-teal-500 hover:bg-teal-700 shadow-2xl text-white font-bold py-2 px-4 rounded-xl">Create</button>
+                    </div>
+                </div>
+    
+                <!-- Items list -->
+                <div class="border border-slate-400 rounded-xl item-list ml-5 my-5 p-5 shadow">
+                    <!-- TODO: Add Table with collapsed hidden borders for items -->
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr>
+                                <th class=" border-slate-400 text-center">SL</th>
+                                <th class=" border-slate-400 text-center">Item</th>
+                                <th class=" border-slate-400 text-center">Token ID</th>
+                                <th class=" border-slate-400 text-center">Quantity</th>
+                                <th class=" border-slate-400 text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border-slate-400 text-center">1.</td>
+                                <td class="border-r border-slate-400 text-center">Item 1</td>
+                                <td class="border-r border-slate-400 text-center">Token ID 1</td>
+                                <td class="border-r border-slate-400 text-center">Quantity 1</td>
+                                <td class=" border-slate-400 text-center">Status 1</td>
+                            </tr>
+                            <tr>
+                                <td class="border-slate-400 text-center">2.</td>
+                                <td class="border-r border-slate-400 text-center">Item 2</td>
+                                <td class="border-r border-slate-400 text-center">Token ID 2</td>
+                                <td class="border-r border-slate-400 text-center">Quantity 2</td>
+                                <td class=" border-slate-400 text-center">Status 2</td>
+                            </tr>
+                            <tr>
+                                <td class="border-slate-400 text-center">3.</td>
+                                <td class="border-r border-slate-400 text-center">Item 3</td>
+                                <td class="border-r border-slate-400 text-center">Token ID 3</td>
+                                <td class="border-r border-slate-400 text-center">Quantity 3</td>
+                                <td class=" border-slate-400 text-center">Status 3</td>
+                            </tr>
+                            <tr>
+                                <td class="border-slate-400 text-center">4.</td>
+                                <td class="border-r border-slate-400 text-center">Item 4</td>
+                                <td class="border-r border-slate-400 text-center">Token ID 4</td>
+                                <td class="border-r border-slate-400 text-center">Quantity 4</td>
+                                <td class=" border-slate-400 text-center">Status 4</td>
+                            </tr>
+                            <tr>
+                                <td class="border-slate-400 text-center">5.</td>
+                                <td class="border-r border-slate-400 text-center">Item 5</td>
+                                <td class="border-r border-slate-400 text-center">Token ID 5</td>
+                                <td class="border-r border-slate-400 text-center">Quantity 5</td>
+                                <td class=" border-slate-400 text-center">Status 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="w-screen align-middle border py-3 bottom-0 absolute" id="footer-placeholder">
+    </div>
+</body>
+</html>
