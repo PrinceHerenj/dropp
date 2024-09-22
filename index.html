@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="delivery-truck.png">
+    <title>Dropp</title>
+    <style>
+        /* Custom styles for your theme colors */
+        body {
+            background-color: #f5f5f5; /* Light gray background */
+        }
+        .navbar {
+            height: 8vh; /* Set navbar height to 8% of the viewport height */
+        }
+        .primary {
+            color: teal; /* Primary color */
+        }
+        .primary-bg {
+            background-color: #508C9B; /* Primary button background */
+        }
+        .primary-bg:hover {
+            background-color: #134B70; /* Dark teal on hover */
+        }
+        .secondary {
+            color: #201E43; /* Dark navy text color */
+        }
+        /* Slide-in animation */
+        @keyframes slide-right {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-text {
+            animation: slide-right .75s ease-out forwards; /* Apply animation */
+        }
+
+        @keyframes slide-left {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-image {
+            animation: slide-left 1.1s ease-out forwards; /* Apply animation */
+        }
+    </style>
+
+    <!--Add header-->
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+    </script>
+    <!-- Add footer to bottom of html -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+
+    <!-- Main Section -->
+    <main id="main" class="mt-30 h-screen w-11/12 mx-auto flex flex-col md:flex-row items-center justify-between">
+        <div class="flex flex-col items-start space-y-6 w-2/5 slide-text">
+            <h1 class="lg:text-4xl font-bold secondary md:text-2xl">Your Packages, Right To <br> Your Dorm Room</h1>
+            <p class="text-gray-700 text-lg ">At Dropp, we ensure that your packages are delivered directly to your dorm room from the college gate. No more hassle of picking up your items from the front desk or worrying about missed deliveries. Our reliable service is designed for students who value convenience and efficiency.</p>
+            <a href="./SignUp.html" class="primary-bg text-white px-6 py-2 rounded-3xl shadow transition duration-300 ease-in-out transform hover:bg-[#134B70] hover:scale-105 bg-teal-500">Get Started</a>
+        </div>
+        <img src="./Assets/package-at-door.jpg" alt="Delivery Service" class="w-1/2 h-4/5 object-cover rounded-2xl mt-10 slide-image" />
+    </main>
+  
+        <!-- JavaScript for Scroll Behavior -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
