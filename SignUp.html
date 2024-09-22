@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGNUP | NITW</title>
+  <link rel="icon" href="delivery-truck.png">
+  <link rel="stylesheet" href="output.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script> 
+    $(function(){
+      $("#header").load("header.html"); 
+      $("#footer").load("footer.html"); 
+    });
+  </script>
+</head>
+<body>
+  <div id="header"></div>
+  <div class="min-h-screen mt-12 bg-gray-100 p-0 sm:p-12">
+    <div class="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl ">
+      <div class="inline-block w-full "><h1 class="font-sans text-3xl text-center font-bold hover:font-serif "> SignUp</h1></div>
+      <form action="" class="mt-2 p-3">
+          <!-- Hostel Name label and input -->
+          <div class="inline-block w-full"><label for="hostelname" class="text-x text-start">Hostel Name</label></div>
+          <select name="hostelname_field" id="" class="mt-2 bg-gray-200 w-full h-12 rounded px-4 focus:outline-teal-300">
+            <option value="azadhall">Azad Hall</option>
+            <option value="bosehall">Bose Hall</option>
+            <option value="ambedkarhall">Ambedkar Hall</option>
+            <option value="babhahall">Babha Hall</option>
+            <option value="gandhihall">Gandhi Hall</option>
+            <option value="gokhalehall">Gokhale Hall</option>
+            <option value="vikramsharabhaihall">Vikram Sarabhai Hall</option>
+            <option value="ultramegahostel">Ultra Mega 1.8k Hostel</option>
+            <option value="1k_hall">1K Hall of Residence </option>
+          </select>
+          <!-- <input type="" maxlength="30" name="" id="hostel_field" class="mt-2 bg-gray-200 w-full h-12 rounded px-4 focus:outline-teal-300"> -->
+          <!-- Hostel no. label and input -->
+          <div class="inline-block w-full mt-2"><label for="hostelno" class="text-x text-start">Hostel Room No.</label></div>
+          <input type="text" maxlength="30" name="" id="hostelno_field" class="mt-2 bg-gray-200 w-full h-12 rounded focus:outline-teal-300 items-center px-4" >
+          <!-- Name label and input -->
+          <div class="inline-block w-full mt-2"><label for="name" class="text-x text-start">Name</label></div>
+          <input type="text" maxlength="30" name="" id="name_field" class="mt-2 bg-gray-200 w-full h-12 rounded focus:outline-teal-300 items-center px-4" >
+          <!-- Email label and input -->
+          <div class="inline-block w-full mt-2"><label for="email" class="text-x text-start">Email</label></div>
+          <input type="email" maxlength="30" name="" id="email_field" class="mt-2 bg-gray-200 w-full h-12 rounded focus:outline-teal-300 items-center px-4" >
+          <!-- Name label and input -->
+          <div class="inline-block w-full mt-2"><label for="phone" class="text-x text-start">Phone</label></div>
+          <input type="text" maxlength="10" name="" id="phone_field" class="mt-2 bg-gray-200 w-full h-12 rounded focus:outline-teal-300 items-center px-4" >
+          <!-- Password label and input -->
+          <div class="inline-block w-full mt-2"><label for="password" class="text-x text-start">Password</label></div>
+          <input type="password" maxlength="15" name="" id="password_field" class="mt-2 bg-gray-200 w-full h-12 rounded focus:outline-teal-300 items-center px-4" >
+          <!-- Confirm Password label and input -->
+          <div class="inline-block w-full mt-2"><label for="confirmpassword" class="text-x text-start">Confirm Password</label></div>
+          <input type="password" maxlength="15" name="" id="confirmpassword_field" class="mt-2 bg-gray-200 w-full h-12 rounded focus:outline-teal-300 items-center px-4" >
+          <!-- SignUp button -->
+          <div class="inline-block w-full mt-9"><button class="text-semi h-12 w-full bg-teal-400 rounded hover:bg-teal-500 text-white shadow-sm hover:font-mono ">SignUp</button></div>
+          <div class=" inline-block w-full mt-8 text-center  ">
+            <label for="seperator" class="pl-3 text-black">Already have an account</label>
+            <a href="./Login.html" class="text-teal-500 hover:text-teal-500 hover:underline">Login</a>
+          </div>
+          </div>
+      </form>
+    </div>
+  </div>
+  <div id="footer"></div>
+</body>
+</html>
