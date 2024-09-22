@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Order</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="./delivery-truck.png">
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+    </script>
+    <!-- Add footer to bottom of html -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</head>
+<body class="bg-gray-100">
+<div id="header-placeholder"></div>
+    <div class="max-w-md mx-auto bg-white p-8 rounded-lg mt-20 shadow-lg">
+        <form id="order-form" onsubmit="return showMessage()">
+            <h1 class="text-2xl font-bold mb-6 text-center">Create an Order</h1>
+            <div class="mb-4">
+                <label for="product-name" class="block text-gray-700">Product Name:</label>
+                <input type="text" id="product-name" name="product-name" placeholder="Enter product name" required class="w-full px-3 py-2 border rounded-lg focus:outline-none  focus:outline-teal-300">
+            </div>
+            <div class="mb-4">
+                <label for="tracking-id" class="block text-gray-700">Tracking ID:</label>
+                <input type="text" id="tracking-id" name="tracking-id" placeholder="Enter tracking ID" required class="w-full px-3 py-2 border rounded-lg focus:outline-none  focus:outline-teal-300">
+            </div>
+            <div class="mb-4">
+                <label for="quantity" class="block text-gray-700">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" required class="w-full px-3 py-2 border rounded-lg focus:outline-none  focus:outline-teal-300">
+            </div>
+            <div class="mb-6">
+                <input type="submit" value="Submit Order" class="w-full bg-teal-400 text-white py-2 rounded-lg hover:bg-teal-500">
+            </div>
+        </form>
+        <div id="message" class="hidden text-center text-green-500">Item added!</div>
+    </div>
+    <div class="w-screen align-middle border py-3 bottom-0 absolute" id="footer-placeholder"></div>
+    </div>
+
+<script>
+    function showMessage() {
+        document.getElementById('message').classList.remove('hidden');
+        return false; // Prevent form submission
+    }
+</script>
+</body>
+</html>
