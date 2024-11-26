@@ -6,9 +6,10 @@ const MongoStore = require('connect-mongo');
 const bcrypt = require('bcryptjs');
 const path = require('path');
 const cors = require('cors');
+const cookieParser = require('cookie-parser'); // Add this line
 
 // MongoDB connection URI
-const uri = "mongodb+srv://princeherenj:Sh353478@cluster0.7xs6q3p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "mongodb+srv://princeherenj:Sh353478@cluster0.7xs6q3p.mongodb.net/Dropp-test?retryWrites=true&w=majority&appName=Cluster0";
 
 // Connect to MongoDB
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -30,8 +31,9 @@ const User = mongoose.model('User', userSchema);
 // Create a Product schema
 const productSchema = new mongoose.Schema({
     name: String,
-    price: Number,
-    description: String
+    username: String,
+    quantity: String,
+    status: String,
 });
 
 const Product = mongoose.model('Product', productSchema);
@@ -43,6 +45,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
+app.use(cookieParser()); // Add this line
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -52,17 +55,9 @@ app.use(session({
     secret: 'your_secret_key',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: uri })
+    store: MongoStore.create({ mongoUrl: uri }),
+    cookie: { secure: false } // Add this line to configure cookies
 }));
-
-// Middleware to check if user is authenticated
-const isAuthenticated = (req, res, next) => {
-    if (req.session.user) {
-        next();
-    } else {
-        res.status(401).send('Unauthorized');
-    }
-};
 
 // Routes
 app.post('/signup', async (req, res) => {
@@ -87,7 +82,8 @@ app.post('/login', async (req, res) => {
   }
 
   req.session.user = user;
-  res.json({ message: 'Login successful' });
+  res.cookie('username', username, { httpOnly: true }); // Add this line to set the cookie
+  res.json({ message: 'Login successful'});
 });
 
 app.post('/logout', (req, res) => {
@@ -95,30 +91,36 @@ app.post('/logout', (req, res) => {
     res.send({ message: 'Logout successful' });
 });
 
-app.post('/products', isAuthenticated, async (req, res) => {
+app.post('/products', async (req, res) => {
     const product = new Product(req.body);
     await product.save();
     res.send(product);
 });
 
-app.get('/products', isAuthenticated, async (req, res) => {
-    const products = await Product.find();
+app.get('/products', async (req, res) => {
+    const products = await Product.find({username: req.body.username});
     res.send(products);
 });
 
-app.get('/products/:id', isAuthenticated, async (req, res) => {
+app.get('/user-products', async (req, res) => {
+  const username = req.cookies.username; // Access the username cookie
+  const products = await Product.find({ username });
+  res.send(products);
+});
+
+app.get('/products/:id', async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).send('Product not found.');
     res.send(product);
 });
 
-app.put('/products/:id', isAuthenticated, async (req, res) => {
+app.put('/products/:id', async (req, res) => {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!product) return res.status(404).send('Product not found.');
     res.send(product);
 });
 
-app.delete('/products/:id', isAuthenticated, async (req, res) => {
+app.delete('/products/:id', async (req, res) => {
     const product = await Product.findByIdAndDelete(req.params.id);
     if (!product) return res.status(404).send('Product not found.');
     res.send(product);
