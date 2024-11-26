@@ -54,17 +54,18 @@
           password: document.getElementById('password').value
         })
       })
-      .then(response => response.json()
-      )
+      .then(response => response.json())
       .then(data => {
         console.log('Success:', data); // Debugging line
-        alert(data.message);
         if (data.message === 'Login successful') {
-          window.location.href = 'dashboard.html';
+          const params = new URLSearchParams({
+            username: document.getElementById('username').value
+          });
+          window.location.href = `dashboard.html?${params.toString()}`;
         }
       })
       .catch(error => {
-        console.log('Error:', error); // Debugging line
+        console.log('Error:', error);
         alert('Login failed');
       });
     });
