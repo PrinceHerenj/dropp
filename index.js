@@ -83,7 +83,7 @@ app.post('/login', async (req, res) => {
 
   req.session.user = user;
   res.cookie('username', username, { httpOnly: true }); // Add this line to set the cookie
-  res.json({ message: 'Login successful'});
+  res.json({ message: 'Login successful', user }); // Modify this line to send the user object
 });
 
 app.post('/logout', (req, res) => {
@@ -103,9 +103,9 @@ app.get('/products', async (req, res) => {
 });
 
 app.get('/user-products', async (req, res) => {
-  const username = req.cookies.username; // Access the username cookie
-  const products = await Product.find({ username });
-  res.send(products);
+    const username = req.query.username;
+    const products = await Product.find({ username });
+    res.send(products);
 });
 
 app.get('/products/:id', async (req, res) => {

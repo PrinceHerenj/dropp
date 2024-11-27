@@ -58,10 +58,8 @@
       .then(data => {
         console.log('Success:', data); // Debugging line
         if (data.message === 'Login successful') {
-          const params = new URLSearchParams({
-            username: document.getElementById('username').value
-          });
-          window.location.href = `dashboard.html?${params.toString()}`;
+          localStorage.setItem('user', JSON.stringify(data.user));
+          window.location.href = `dashboard.html`;
         }
       })
       .catch(error => {

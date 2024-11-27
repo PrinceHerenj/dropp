@@ -23,21 +23,19 @@
                 document.getElementById('footer-placeholder').innerHTML = data;
             });
     </script>
-    <!-- <script>
-        fetch('http://localhost:3200/user-products')
-            .then(response => response.json())
-            .then(data => {
-                console.log('User Products:', data);
-            })
-            .catch(error => {
-                console.error('Error fetching user products:', error);
-            });
-    </script> -->
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.forEach((value, key) => {
-            console.log(`${key}: ${value}`);
-        });
+        const username = JSON.parse(localStorage.getItem('user')).username;
+        fetch(`http://localhost:3200/user-products?username=${username}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // Handle the fetched data
+        })
+        .catch(error => console.error('Error fetching user products:', error));  
     </script>
 </head>
 <body>
