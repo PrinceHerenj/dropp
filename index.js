@@ -34,6 +34,7 @@ const productSchema = new mongoose.Schema({
     username: String,
     quantity: String,
     status: String,
+    transactionId: String
 });
 
 const Product = mongoose.model('Product', productSchema);
@@ -96,9 +97,16 @@ app.post('/products', async (req, res) => {
     res.send(product);
 });
 
-app.get('/products', async (req, res) => {
-    const products = await Product.find({username: req.body.username});
-    res.send(products);
+app.post('/create-product', async (req, res) => {
+    const { name, username, quantity, transactionId } = req.body;
+    const product = new Product({ name, username, quantity, status: 'Ordered', transactionId }); // Change status to 'Ordered'
+
+    try {
+        await product.save();
+        res.send({ message: 'Product created successfully' });
+    } catch (err) {
+        res.status(500).send('Error creating product');
+    }
 });
 
 app.get('/user-products', async (req, res) => {

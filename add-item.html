@@ -21,6 +21,9 @@
                 document.getElementById('footer-placeholder').innerHTML = data;
             });
     </script>
+    <script>
+        const username = JSON.parse(localStorage.getItem('user')).username;
+    </script>
 </head>
 <body class="bg-gray-100">
 <div id="header-placeholder"></div>
@@ -53,6 +56,31 @@
         document.getElementById('message').classList.remove('hidden');
         return false; // Prevent form submission
     }
+
+    document.getElementById('order-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const username = JSON.parse(localStorage.getItem('user')).username;
+        const name = document.getElementById('product-name').value;
+        const quantity = document.getElementById('quantity').value;
+        const transactionId = document.getElementById('tracking-id').value;
+
+        const response = await fetch('http://localhost:3200/create-product', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, username, quantity, transactionId })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            document.getElementById('message').classList.remove('hidden');
+            alert('Item added!');
+            window.location.href = 'dashboard.html';
+        } else {
+            alert('Error: ' + result.message);
+        }
+    });
 </script>
 </body>
 </html>
