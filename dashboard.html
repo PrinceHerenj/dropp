@@ -23,6 +23,7 @@
                 document.getElementById('footer-placeholder').innerHTML = data;
             });
     </script>
+    <!-- User fetch -->
     <script>
         const username = JSON.parse(localStorage.getItem('user')).username;
         fetch(`http://localhost:3200/user-products?username=${username}`, {
@@ -33,7 +34,21 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Handle the fetched data
+            console.log(data)
+            const itemsTableBody = document.querySelector('#items tbody');
+            let tableContent = '';
+            data.forEach((item, index) => {
+                tableContent += `
+                    <tr>
+                        <td class="border-slate-400 text-center">${index + 1}.</td>
+                        <td class="border-r border-slate-400 text-center">${item.name}</td>
+                        <td class="border-r border-slate-400 text-center">${item.transactionId}</td>
+                        <td class="border-r border-slate-400 text-center">${item.quantity}</td>
+                        <td class="border-slate-400 text-center">${item.status}</td>
+                    </tr>
+                `;
+            });
+            itemsTableBody.innerHTML = tableContent;
         })
         .catch(error => console.error('Error fetching user products:', error));  
     </script>
@@ -92,41 +107,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="border-slate-400 text-center">1.</td>
-                                <td class="border-r border-slate-400 text-center">Item 1</td>
-                                <td class="border-r border-slate-400 text-center">Transaction ID 1</td>
-                                <td class="border-r border-slate-400 text-center">Quantity 1</td>
-                                <td class=" border-slate-400 text-center">Status 1</td>
-                            </tr>
-                            <tr>
-                                <td class="border-slate-400 text-center">2.</td>
-                                <td class="border-r border-slate-400 text-center">Item 2</td>
-                                <td class="border-r border-slate-400 text-center">Transaction ID 2</td>
-                                <td class="border-r border-slate-400 text-center">Quantity 2</td>
-                                <td class=" border-slate-400 text-center">Status 2</td>
-                            </tr>
-                            <tr>
-                                <td class="border-slate-400 text-center">3.</td>
-                                <td class="border-r border-slate-400 text-center">Item 3</td>
-                                <td class="border-r border-slate-400 text-center">Transaction ID 3</td>
-                                <td class="border-r border-slate-400 text-center">Quantity 3</td>
-                                <td class=" border-slate-400 text-center">Status 3</td>
-                            </tr>
-                            <tr>
-                                <td class="border-slate-400 text-center">4.</td>
-                                <td class="border-r border-slate-400 text-center">Item 4</td>
-                                <td class="border-r border-slate-400 text-center">Transaction ID 4</td>
-                                <td class="border-r border-slate-400 text-center">Quantity 4</td>
-                                <td class=" border-slate-400 text-center">Status 4</td>
-                            </tr>
-                            <tr>
-                                <td class="border-slate-400 text-center">5.</td>
-                                <td class="border-r border-slate-400 text-center">Item 5</td>
-                                <td class="border-r border-slate-400 text-center">Transaction ID 5</td>
-                                <td class="border-r border-slate-400 text-center">Quantity 5</td>
-                                <td class=" border-slate-400 text-center">Status 5</td>
-                            </tr>
+                            <!-- Placeholder rows removed -->
                         </tbody>
                     </table>
                 </div>

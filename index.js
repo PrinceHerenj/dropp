@@ -82,7 +82,6 @@ app.post('/login', async (req, res) => {
   }
 
   req.session.user = user;
-  res.cookie('username', username, { httpOnly: true }); // Add this line to set the cookie
   res.json({ message: 'Login successful', user }); // Modify this line to send the user object
 });
 
