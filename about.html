@@ -13,37 +13,155 @@
       $("#footer").load("footer.html"); 
     });
   </script>
+  <link rel="stylesheet" href="./animate.css">
+  <style>
+    #header{
+            z-index: 110;
+            position: absolute;
+        }
+
+        .preloader{
+            position: absolute;
+            z-index: 100;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            background-color: #fff;
+            transition: opacity 3s, visibility 3s;
+        }
+        .preloader img{
+            width: 400px;
+            height: 400px;
+            transform: translateX(-400px);
+            animation: truck-go-right 5s infinite;
+        }
+        @keyframes truck-go-right {
+            100%{
+                transform: translateX(100vw);
+            }
+        }
+        @keyframes disappear {
+            0%{
+                opacity: 100%;
+            }
+
+            100%{
+                opacity: 0%;
+                display: none;
+            }
+        }
+
+        .preloader--hidden{
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse; /* Removes borders between cells */
+        }
+
+        .text-block, .image-block {
+            padding: 50px;
+            border-radius: 20px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .text-block {
+            text-align: left; /* Align text to the left */
+            transition: box-shadow 0.3s ease;
+            
+        }
+        .text-block:hover{
+          box-shadow: 0 0 10px rgba(33,33,33,.1);
+        }
+
+        .image-block {
+            text-align: center; /* Center images */
+        }
+
+        .image-block img {
+            width: 20vw;
+            height: 30vh; /* Maintain aspect ratio */
+            object-fit: cover;
+        }
+
+        .info-table h2 {
+            margin-top: 0; /* Remove top margin for headings */
+            font-weight: 800;
+        }
+  </style>
 </head>
 <body>
+  <!-- <div class="preloader">
+    <img src="./delivery-truck.png" alt="">
+  </div> -->
   <div id="header"></div>
-  <div class="min-h-screen mt-12 bg-gray-100 p-0 sm:p-12">
+  <div class="mt-12 bg-gray-100 p-0 sm:p-12">
     <div class=" mx-auto custom min-w-1 px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl ">
       <div class="inline-block w-full ">        
         <h1 class="font-sans text-3xl text-center font-bold pb-3"> About Us</h1>
         <hr>
       </div>
       <div class="para px-6 text-justify">
-    <ul>
-        <br>
-        <li> Dropp is an innovative <b>dropshipping system </b>tailored specifically for hostellers at NIT Warangal. This system 
-        facilitates the seamless delivery of items ordered from e-commerce sites directly to students' rooms in various hostels,
-        including <b>Bhabha Hall, Ultra Mega 1.8K Hostel, Ramappa Hall, and Kakatiya Hall</b>. The operation begins 
-        when a student places an order online , Dropp then coordinates with delivery partners to ensure that the items are
-        transported efficiently from the institute gate to the respective hostel rooms.
-        </li>
-        <li> How Dropp Functions
-
-        Dropp employs a <b>quantity-based pricing system</b> to determine the shipping costs, making it affordable for students while ensuring transparency in charges. Upon placing an order, students can track their delivery in real-time through the app, which provides an estimated time of arrival, ensuring that deliveries occur within the specified timeframe.
-
-        This system addresses the common <b>logistics challenges</b> faced by students, such as long walks and queuing at the gate to collect their packages. By handling these tasks, Dropp significantly reduces the burden on students, allowing them to focus on their studies and other activities. The convenience of having items delivered directly to their rooms saves valuable time that would otherwise be spent navigating through campus.
-
-        In addition, Dropp collaborates with reliable delivery partners who are trained to meet strict timelines, ensuring that every package arrives promptly. This commitment to timely delivery enhances the overall experience for students, making it a hassle-free process. All of this is provided at a cost that remains competitive and reasonable, making Dropp an essential service for every student at NIT Warangal.
-        </li>
-            </ul>
+        <table class="info-table">
+          <tr>
+              <td class="text-block">
+                  <h2>Dropp Overview</h2>
+                  <p>Dropp is an innovative dropshipping system tailored specifically for hostellers at NIT Warangal. This system facilitates the seamless delivery of items ordered from e-commerce sites directly to students' rooms in various hostels.</p>
+              </td>
+              <td class="image-block">
+                  <img src="./delivery-truck.png" alt="Dropp Overview Image">
+              </td>
+          </tr>
+          <tr>
+              <td class="image-block">
+                  <img src="./dropshipping-product.webp" alt="How Dropp Functions Image">
+              </td>
+              <td class="text-block">
+                  <h2>How Dropp Functions</h2>
+                  <p>Dropp employs a simple system where the student enters the details of the package they have ordered on our portal, and delivering it to them from college main gate would be our task.</p>
+              </td>
+          </tr>
+          <tr>
+              <td class="text-block">
+                  <h2>Real-Time Tracking</h2>
+                  <p>Upon placing an order, students can track their delivery in real-time through the website, which provides with regular status updates about the package status.</p>
+              </td>
+              <td class="image-block">
+                  <img src="./real-time-tracking.webp" alt="Real-Time Tracking Image">
+              </td>
+          </tr>
+          <tr>
+              <td class="image-block">
+                  <img src="./product-receiving.webp" alt="Convenience of Dropp Image">
+              </td>
+              <td class="text-block">
+                  <h2>Convenience</h2>
+                  <p>This system addresses the common logistics challenges faced by students, significantly reducing the burden on them.</p>
+              </td>
+          </tr>
+      </table>
 
         </div>
     </div>
   </div>
   <div id="footer"></div>
+  <script>
+    // let preloader = document.querySelector(".preloader");
+
+    // const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+    // window.addEventListener("load", async () => {
+    //     await sleep(1000);
+    //     console.log("hiding preloader")
+    //     preloader.classList.add("preloader--hidden");
+        
+    //     preloader.addEventListener("transitionend", () => {
+    //         document.body.removeChild(preloader);
+    //     })
+    // });
+    </script>
 </body>
 </html>
