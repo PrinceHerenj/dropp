@@ -115,6 +115,17 @@ app.get('/user-products', async (req, res) => {
     res.send(products);
 });
 
+app.get('/products', async (req, res) => {
+    const username = req.query.username;
+    const status = req.query.status;
+    const products = await Product.find(
+        {
+            username, status
+        }
+    );
+    res.send(products);
+})
+
 app.get('/products/:id', async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).send('Product not found.');
