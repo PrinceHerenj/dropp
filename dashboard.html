@@ -13,16 +13,11 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header-placeholder').innerHTML = data;
+                
             });
     </script>
     <!-- Add footer to bottom of html -->
-    <script>
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
-    </script>
+
     <!-- User fetch -->
     <script>
         const username = JSON.parse(localStorage.getItem('user')).username;
@@ -34,7 +29,6 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             const itemsTableBody = document.querySelector('#items tbody');
             let tableContent = '';
             data.forEach((item, index) => {
@@ -63,30 +57,21 @@
             <div class="w-80 filter-box shadow border border-slate-400 rounded-xl p-5">
                 <h2 class="text-xl font-bold mb-4">Filter Items</h2>
                 <div class="mb-4">
-                    <label for="filter-name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="filter-name" class="mt-1 block w-full border border-slate-400 rounded-xl shadow px-4 py-2" placeholder="Enter item name">
-                </div>
-                <div class="mb-4">
                     <label for="filter-status" class="block text-sm font-medium text-gray-700">Status</label>
                     <select id="filter-status" class="mt-1 block w-full border border-slate-400 rounded-xl shadow px-4 py-2">
                         <option value="">Select status</option>
-                        <option value="ordered">Ordered</option>
-                        <option value="received">Received</option>
-                        <option value="delivered">Delivered</option>
+                        <option value="Ordered">Ordered</option>
+                        <option value="Received">Received</option>
+                        <option value="Delivered">Delivered</option>
                     </select>
                 </div>
-                <button class="bg-teal-500 hover:bg-teal-700 shadow-2xl text-white font-bold py-2 px-4 rounded-xl">Apply Filter</button>
+                <button class="bg-teal-500 hover:bg-teal-700 shadow-2xl text-white font-bold py-2 px-4 rounded-xl" id="filter-button">Apply Filter</button>
             </div>
             <div class="flex-col w-fit">
                 <div class="flex">
-                    <!-- Search -->
-                    <div class=" h-10 mx-5">
-                        <input type="text" class="w-96 h-10 border border-slate-400 rounded-xl shadow px-4" placeholder="Search">
-                    </div>
-                    <!-- TODO: Create Button for item adding -->
                     <div>
                         <a href="add-item.html">
-                        <button class="bg-teal-500 hover:bg-teal-700 shadow-2xl text-white font-bold py-2 px-4 rounded-xl">
+                        <button class="bg-teal-500 hover:bg-teal-700 shadow-2xl text-white font-bold py-2 px-4 rounded-xl mx-5">
                                 Create
                         </button>
                     </a>
@@ -119,4 +104,45 @@
     <div class="w-screen align-middle border py-3 bottom-0 absolute" id="footer-placeholder">
     </div>
 </body>
+<script>
+    document.getElementById('filter-button').addEventListener('click', () => {
+            const status = document.getElementById('filter-status').value;
+            fetch(`http://localhost:3200/products?username=${username}&status=${status}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const itemsTableBody = document.querySelector('#items tbody');
+            let tableContent = '';
+            data.forEach((item, index) => {
+                tableContent += `
+                    <tr>
+                        <td class="border-slate-400 text-center">${index + 1}.</td>
+                        <td class="border-r border-slate-400 text-center">${item.name}</td>
+                        <td class="border-r border-slate-400 text-center">${item.transactionId}</td>
+                        <td class="border-r border-slate-400 text-center">${item.quantity}</td>
+                        <td class="border-slate-400 text-center">${item.status}</td>
+                    </tr>
+                `;
+            });
+            itemsTableBody.innerHTML = tableContent;
+            })
+            .catch(error => console.error('Error fetching filtered products:', error));
+        });
+</script>
+<script>
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+            document.getElementById("loginbtn").innerHTML = "Logout";
+            document.getElementById("registerbtn").style.display ="none";
+            document.getElementById("loginbtn").addEventListener('click', () => {
+                localStorage.removeItem('user'); // Delete user from localStorage
+            });
+        });
+</script>
 </html>
