@@ -13,16 +13,11 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header-placeholder').innerHTML = data;
+                
             });
     </script>
     <!-- Add footer to bottom of html -->
-    <script>
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
-    </script>
+
     <!-- User fetch -->
     <script>
         const username = JSON.parse(localStorage.getItem('user')).username;
@@ -137,5 +132,27 @@
             })
             .catch(error => console.error('Error fetching filtered products:', error));
         });
+</script>
+<script>
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+            const loginbtn = document.getElementById("loginbtn")
+            loginbtn.innerHTML = "Logout";
+            loginbtn.addEventListener('click', ()=> {
+                localStorage.removeItem('user');
+                window.location.href = "loginpage.html";
+                fetch('http://localhost:3200/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username })
+                })
+            })
+            document.getElementById("registerbtn").style.display ="none";
+        });
+
 </script>
 </html>
