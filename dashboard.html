@@ -138,21 +138,11 @@
         .then(response => response.text())
         .then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
-            const loginbtn = document.getElementById("loginbtn")
-            loginbtn.innerHTML = "Logout";
-            loginbtn.addEventListener('click', ()=> {
-                localStorage.removeItem('user');
-                window.location.href = "loginpage.html";
-                fetch('http://localhost:3200/logout', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username })
-                })
-            })
+            document.getElementById("loginbtn").innerHTML = "Logout";
             document.getElementById("registerbtn").style.display ="none";
+            document.getElementById("loginbtn").addEventListener('click', () => {
+                localStorage.removeItem('user'); // Delete user from localStorage
+            });
         });
-
 </script>
 </html>
