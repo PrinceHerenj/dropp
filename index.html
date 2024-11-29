@@ -138,18 +138,12 @@
             });
     </script>
     <!-- Add footer to bottom of html -->
-    <script>
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
-    </script>
+    
 </head>
 <body>
-    <!-- <div class="preloader">
+    <div class="preloader">
         <img src="./delivery-truck.png" alt="">
-    </div> -->
+    </div>
     <div id="header-placeholder"></div>
 
 
@@ -162,6 +156,8 @@
         </div>
         <img src="./Assets/package-at-door.jpg" alt="Delivery Service" class="w-1/2 h-4/5 object-cover rounded-2xl mt-10 slide-image" />
     </main>
+
+    <div id="footer-placeholder"></div>
   
         <!-- JavaScript for Scroll Behavior -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -192,6 +188,13 @@
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
+    </script>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
     </script>
 </body>
 </html>
