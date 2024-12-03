@@ -9,7 +9,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser'); // Add this line
 
 // MongoDB connection URI
-const uri = "mongodb+srv://princeherenj:Sh353478@cluster0.7xs6q3p.mongodb.net/Dropp-test?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "mongodb+srv://<username>:<password>@cluster0.7xs6q3p.mongodb.net/Dropp-test?retryWrites=true&w=majority&appName=Cluster0";
 
 // Connect to MongoDB
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
